@@ -1,0 +1,11 @@
+{
+  "QBitConfigPath": "",
+  "TrackerUrls": [
+    "https://cf.trackerslist.com/all.txt",
+  ],
+  "MergeTrackers": true,
+  "UpdateRegularly": false,
+  "UpdateInterval": 1,
+  "UseProxy": false,
+  "ProxyUrl": ""
+}
