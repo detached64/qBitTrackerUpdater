@@ -2,6 +2,13 @@
 
 A simple tool to update qBitTorrent trackers from URLs (regularly).
 
+## Features
+
+- Light-weight & framework-independent
+- Updates trackers from a list of URLs optionally at regular intervals
+- Auto deduplication and merging
+- Optional proxy support
+
 ## Installation
 
 [Release](https://github.com/detached64/qBitTrackerUpdater/releases)
@@ -36,6 +43,8 @@ The json above contains the following fields:
 
 - If executed, the application will read the configuration file. If not found, it will create a default one. The settings created contain default values except for `QBitConfigPath`, which is completed automatically.
 - By default, the application prints nothing to the console. Check the log file `qBitTrackerUpdater.log` in the same directory for output.
+- The application does not require qBittorrent to be running or not.
+- There is a sample configuration file [here](./docs/Settings.json) which containing several avaliable URLs. It is welcomed to contribute more URLs to the list.
 
 ## Build
 
@@ -44,6 +53,10 @@ The json above contains the following fields:
 - Windows
 
   `dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true`
+
+## Acknowledgements
+
+- [PeanutButter.INI](https://github.com/fluffynuts/PeanutButter) for parsing ini files.
 
 ## License
 
