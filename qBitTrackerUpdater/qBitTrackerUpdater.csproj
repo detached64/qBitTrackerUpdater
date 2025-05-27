@@ -9,6 +9,10 @@
     <InvariantGlobalization>true</InvariantGlobalization>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="PeanutButter.INI" Version="3.0.384" />
   </ItemGroup>
