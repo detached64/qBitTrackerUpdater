@@ -42,6 +42,7 @@ The json above contains the following fields:
 - dotnet sdk 9.0
 
 - Windows
+
   `dotnet publish -c Release -r win-x64 -p:PublishSingleFile=true --self-contained true`
 
 ## License
