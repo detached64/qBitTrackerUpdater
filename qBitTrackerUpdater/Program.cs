@@ -44,7 +44,8 @@ namespace qBitTrackerUpdater
                 EnsureContainsSection(config);
                 HashSet<string> existingTrackers = GetExistingTrackers(config);
                 HashSet<string> remoteTrackers = FetchRemoteTrackers();
-                string result = MergeTrackers(existingTrackers, remoteTrackers);
+                HashSet<string> localTrackers = GetLocalTrackers();
+                string result = MergeTrackers(existingTrackers, remoteTrackers, localTrackers);
                 SaveFile(config, result);
             }
             catch (Exception ex)
@@ -137,13 +138,31 @@ namespace qBitTrackerUpdater
             return trackers;
         }
 
-        private static string MergeTrackers(HashSet<string> existingTrackers, HashSet<string> remoteTrackers)
+        private static HashSet<string> GetLocalTrackers()
+        {
+            if (!File.Exists("Extra.txt"))
+            {
+                return [];
+            }
+            string content = File.ReadAllText("Extra.txt");
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                return [];
+            }
+            HashSet<string> trackers = [.. Utils.Split(content, true)];
+            Logger.Info($"Found {trackers.Count} local trackers in Extra.txt after deduplication.");
+            return trackers;
+        }
+
+        private static string MergeTrackers(HashSet<string> existingTrackers, HashSet<string> remoteTrackers, HashSet<string> loaclTrackers)
         {
             Logger.Info($"Total trackers after deduplication: {remoteTrackers.Count}");
+            remoteTrackers.UnionWith(loaclTrackers);
+            Logger.Info($"Total trackers after merging local trackers: {remoteTrackers.Count}");
             if (SettingsManager.Settings.MergeTrackers)
             {
                 remoteTrackers.UnionWith(existingTrackers);
-                Logger.Info($"Total trackers after merging: {remoteTrackers.Count}");
+                Logger.Info($"Total trackers after merging existing trackers: {remoteTrackers.Count}");
             }
             return Utils.Join([.. remoteTrackers], false);
         }
