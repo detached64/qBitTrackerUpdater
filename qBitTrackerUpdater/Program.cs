@@ -1,5 +1,6 @@
 using PeanutButter.INI;
 using System.Net;
+using System.Reflection;
 
 namespace qBitTrackerUpdater
 {
@@ -12,7 +13,16 @@ namespace qBitTrackerUpdater
 
         private static void Main()
         {
+            ShowVersion();
             HandleUpdate();
+        }
+
+        private static void ShowVersion()
+        {
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            string version = assembly.GetName().Version.ToString();
+            string product = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product ?? "qBitTrackerUpdater";
+            Logger.Info($"{product} v{version}");
         }
 
         private static void HandleUpdate()
