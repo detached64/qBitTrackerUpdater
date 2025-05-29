@@ -5,7 +5,7 @@ namespace qBitTrackerUpdater
 {
     public sealed class SettingsManager
     {
-        private static readonly string SettingsPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\Settings.json";
+        private static readonly string SettingsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Settings.json");
 
         public static Settings Settings { get; private set; }
         private SettingsManager() { }

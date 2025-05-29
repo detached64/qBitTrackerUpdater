@@ -7,7 +7,7 @@ namespace qBitTrackerUpdater
     public static class Program
     {
         private const string SectionBitTorrent = "BitTorrent";
-        private const string SectionAdditionalTrackers = "Session\\AdditionalTrackers";
+        private const string SectionAdditionalTrackers = @"Session\AdditionalTrackers";
 
         private static HttpClient Client;
 
@@ -22,7 +22,7 @@ namespace qBitTrackerUpdater
             Assembly assembly = Assembly.GetExecutingAssembly();
             string version = assembly.GetName().Version.ToString();
             string product = assembly.GetCustomAttribute<AssemblyProductAttribute>()?.Product ?? "qBitTrackerUpdater";
-            Logger.Info($"{product} v{version}");
+            Logger.Info($"{product} v{version} on {PlatformManager.Platform}");
         }
 
         private static void HandleUpdate()

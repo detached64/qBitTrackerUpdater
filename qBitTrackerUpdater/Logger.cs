@@ -5,7 +5,7 @@ namespace qBitTrackerUpdater
 {
     public static class Logger
     {
-        private static readonly string LogPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\{Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyProductAttribute>().Product}.log";
+        private static readonly string LogPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.log");
 
         private static readonly Lock _lockObject = new();
 

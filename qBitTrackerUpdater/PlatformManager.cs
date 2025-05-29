@@ -8,9 +8,11 @@ namespace qBitTrackerUpdater
 
         public static readonly string DefaultQBitConfigPath;
 
-        private static readonly string DefaultConfigPathWindows = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\qBittorrent\\qBittorrent.ini";
+        private static readonly string DefaultConfigPathWindows =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "qBittorrent", "qBittorrent.ini");
 
-        private static readonly string DefaultConfigPathLinux = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\qBittorrent\\qBittorrent.conf";
+        private static readonly string DefaultConfigPathLinux =
+            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "qBittorrent", "qBittorrent.conf");
 
         static PlatformManager()
         {
