@@ -54,9 +54,7 @@ namespace qBitTrackerUpdater
 
     public sealed class Settings
     {
-        private static readonly string DefaultQBitConfigPathWindows = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\qBittorrent\\qBittorrent.ini";
-
-        public string QBitConfigPath { get; set; } = DefaultQBitConfigPathWindows;
+        public string QBitConfigPath { get; set; } = PlatformManager.DefaultQBitConfigPath;
         public string[] TrackerUrls { get; set; } = [];
         public bool MergeTrackers { get; set; } = true;
         public bool UpdateRegularly { get; set; }
