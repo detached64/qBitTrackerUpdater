@@ -103,7 +103,9 @@ namespace qBitTrackerUpdater
             {
                 return;
             }
-            throw new InvalidDataException("The qBittorrent config file does not contain the required sections or keys. Please ensure it is a valid qBittorrent configuration file.");
+            Logger.Info("The qBittorrent config file does not contain the required sections or keys. Try to create them.");
+            file[SectionBitTorrent][SectionAdditionalTrackers] = string.Empty;
+            Logger.Info("Created empty section in the config file.");
         }
 
         private static HashSet<string> GetExistingTrackers(INIFile file)
